@@ -5,10 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mi primera PWA</title>
     
-    <link rel="icon" href="data:,">
     <link rel="manifest" href="manifest.json">
     <meta name="theme-color" content="#2196f3">
     <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="data:,">
+    
+    <!-- Para que funcione como app en iOS -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Mi PWA">
+    
+    <!-- Para Android -->
+    <meta name="mobile-web-app-capable" content="yes">
 </head>
 <body>
     <h1>Bienvenido a mi PWA</h1>
