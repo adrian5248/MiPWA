@@ -9,18 +9,18 @@
     "orientation": "portrait",
     "icons": [
         {
-            "src": "icons/icon-96x96.png",
+            "src": "icons/aromantial1.png",
             "sizes": "96x96",
-            "type": "image/png"
+            "type": "image/ico"
         },
         {
-            "src": "icons/icon-192x192.png",
+            "src": "icons/aromantial2.png",
             "sizes": "192x192",
             "type": "image/png",
             "purpose": "any maskable"
         },
         {
-            "src": "icons/icon-512x512.png",
+            "src": "icons/aromantial3.png",
             "sizes": "512x512",
             "type": "image/png",
             "purpose": "any maskable"
