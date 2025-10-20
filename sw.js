@@ -1,53 +1,52 @@
-//1. Nombre del sw y los archivos a cachear
-const CACHE_NAME = "mi-cache-v1"; // Se recomienda cambiar el nombre al hacer correcciones.
-const BASE_PATH = "./"; // Cambiado a ruta relativa
+const CACHE_NAME = "mi-cache-v1";
+const BASE_PATH = "./";
 const urlsToCache = [
+    `${BASE_PATH}`,
     `${BASE_PATH}index.html`,
     `${BASE_PATH}manifest.json`,
     `${BASE_PATH}style.css`,
     `${BASE_PATH}offline.html`,
-    // Rutas de íconos ajustadas para usar BASE_PATH como "./"
     `${BASE_PATH}icons/icon-192x192.png`,
     `${BASE_PATH}icons/icon-512x512.png`
-    ];
+];
 
-//2. INSTALL -> se ejecuta al instalar el service worker
+// INSTALL
 self.addEventListener("install", event => {
     console.log("SW: Instalando el SW ...");
     event.waitUntil(
-        // !!! CORRECCIÓN CRÍTICA DE SINTAXIS APLICADA AQUI !!!
         caches.open(CACHE_NAME).then(cache => {
             console.log("Archivos cacheados");
-            return cache.addAll(urlsToCache)
+            return cache.addAll(urlsToCache);
         })
     );
 });
 
-//3. ACTIVATE -> se ejecuta al activar el service worker
+// ACTIVATE
 self.addEventListener("activate", event => {
     event.waitUntil(
         caches.keys().then(keys =>
             Promise.all(
-                keys.filter( key => key !== CACHE_NAME)
+                keys.filter(key => key !== CACHE_NAME)
                 .map(key => caches.delete(key))
             )
         )
     );
 });
 
-// 4. FETCH -> intercepta peticiones de la app
+// FETCH
 self.addEventListener("fetch", event => {
     event.respondWith(
         caches.match(event.request).then(response => {
-            // Asegúrate de que offline.html también use BASE_PATH si es necesario.
-            return response || fetch(event.request).catch (() => caches.match(`${BASE_PATH}offline.html`));
+            return response || fetch(event.request).catch(() => 
+                caches.match(`${BASE_PATH}offline.html`)
+            );
         })
     );
 });
 
-// 5. Push - notificaciones en segundo plano
+// PUSH
 self.addEventListener("push", event => {
-    const data = event.data ? event.data.text() : "Notificación sin texto"
+    const data = event.data ? event.data.text() : "Notificación sin texto";
     event.waitUntil(
         self.registration.showNotification("Mi PWA", {body: data})
     );

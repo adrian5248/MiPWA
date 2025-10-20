@@ -4,19 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mi primera PWA</title>
-
+    
     <link rel="manifest" href="manifest.json">
-<
-    <meta name="theme_color" content="#2196f3">
+    <meta name="theme-color" content="#2196f3">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <h1>Bienvenido a mi PWA</h1>
-    <p>Se puede instalar como aplicacion en tu celular</p>
-    <button onclick="alert('Hola desde la PWA')">Click aqui</button>
+    <p>Se puede instalar como aplicación en tu celular</p>
+    <button onclick="alert('Hola desde la PWA')">Click aquí</button>
     
     <script>
     if("serviceWorker" in navigator){
-        // El Service Worker se registrará en el scope de la carpeta actual (/MiPWA/)
         navigator.serviceWorker.register("sw.js")
         .then(reg => console.log("Service Worker registrado con éxito. Scope:", reg.scope))
         .catch(err => console.log("Error al registrar el Service Worker:", err))
