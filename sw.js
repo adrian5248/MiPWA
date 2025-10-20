@@ -1,4 +1,4 @@
-const CACHE_NAME = "mi-cache-v1";
+const CACHE_NAME = "mi-cache-v2";
 const BASE_PATH = "./";
 const urlsToCache = [
     `${BASE_PATH}`,
